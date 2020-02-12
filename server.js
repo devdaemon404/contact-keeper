@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 
 const connectDB = require('./config/db');
 const PORT = process.env.PORT || 5000;
@@ -8,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 //Init Middleware
+app.use(morgan('dev'));
 app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => {
