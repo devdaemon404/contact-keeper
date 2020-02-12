@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import ContactContext from '../../context/contact/contactContext';
 
 const ContactForm = () => {
+    const contactContext = useContext(ContactContext);
     const [contact, setContact] = useState({
         name: '',
         email: '',
@@ -13,10 +15,21 @@ const ContactForm = () => {
         ...contact,
         [e.target.name]: e.target.value
     });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        contactContext.addContact(contact);
+        setContact({
+            name: '',
+            email: '',
+            phone: '',
+            type: 'personal'
+        })
+    }
     return (
         <div className="container-fluid my-2">
             <div className="card border-dark bg-light card-body text-left">
-                <form>
+                <form onSubmit={onSubmit}>
                     <h4 className="text-center">Add Contact</h4>
                     <div className="form-group">
                         <input
@@ -43,13 +56,13 @@ const ContactForm = () => {
                             value={phone}
                             onChange={onChange}
                         />
-                        <h6>Contact Type:</h6>
+                        <h6 className="lead">Contact Type:</h6>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="type" value="personal" checked={type === 'personal'} />
+                            <input className="form-check-input" type="radio" name="type" value="personal" checked={type === 'personal'} onChange={onChange} />
                             <label className="form-check-label">Personal</label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="type" value="professional" checked={type === 'professional'} />
+                            <input className="form-check-input" type="radio" name="type" value="professional" checked={type === 'professional'} onChange={onChange}/>
                             <label className="form-check-label">Professional</label>
                         </div>
                     </div>
@@ -57,7 +70,6 @@ const ContactForm = () => {
                 </form>
             </div>
         </div>
-
     )
 }
 
