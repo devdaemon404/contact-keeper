@@ -1,8 +1,23 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react';
 import ContactContext from '../../context/contact/contactContext';
 
 const ContactForm = () => {
     const contactContext = useContext(ContactContext);
+    const { addContact, updateContact, clearCurrent, current } = contactContext;
+
+    useEffect(() => {
+        if (current !== null) {
+            setContact(current);
+        } else {
+            setContact({
+                name: '',
+                email: '',
+                phone: '',
+                type: 'personal'
+            })
+        }
+    }, [contactContext, current]);
+
     const [contact, setContact] = useState({
         name: '',
         email: '',
@@ -15,22 +30,23 @@ const ContactForm = () => {
         ...contact,
         [e.target.name]: e.target.value
     });
-
     const onSubmit = (e) => {
         e.preventDefault();
-        contactContext.addContact(contact);
-        setContact({
-            name: '',
-            email: '',
-            phone: '',
-            type: 'personal'
-        })
+        if (current === null) {
+            addContact(contact);
+        } else {
+            updateContact(contact);
+        }
+        clearAll();
+    };
+    const clearAll = () => {
+        clearCurrent();
     }
     return (
         <div className="container-fluid my-2">
             <div className="card border-dark bg-light card-body text-left">
                 <form onSubmit={onSubmit}>
-                    <h4 className="text-center">Add Contact</h4>
+                    <h4 className="text-center">{current ? 'Update Contact' : 'Add Contact'}</h4>
                     <div className="form-group">
                         <input
                             type="text"
@@ -62,11 +78,13 @@ const ContactForm = () => {
                             <label className="form-check-label">Personal</label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="type" value="professional" checked={type === 'professional'} onChange={onChange}/>
+                            <input className="form-check-input" type="radio" name="type" value="professional" checked={type === 'professional'} onChange={onChange} />
                             <label className="form-check-label">Professional</label>
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" value={current ? 'Edit Contact' : 'Add Contact'} className="btn btn-primary">Submit</button>
+                    {current && <button className="btn btn-secondary ml-2" onClick={clearAll}>Clear</button>}
+
                 </form>
             </div>
         </div>
