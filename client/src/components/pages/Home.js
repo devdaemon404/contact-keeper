@@ -5,10 +5,10 @@ import ContactForm from '../contacts/ContactForm';
 const Home = () => {
     return (
         <div className="row mt-3 justify-content-center">
-            <div className="column">
+            <div className="col">
                 <ContactForm />
             </div>
-            <div className="column">
+            <div className="col">
                 <Contacts />
             </div>
         </div>
