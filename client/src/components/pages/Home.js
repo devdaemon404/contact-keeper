@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Contacts from '../contacts/Contacts';
 
 const Home = () => {
     return (
-        <div>
-            <h1>Home</h1>
+        <div className="row mt-3">
+            <div className="column ml-auto">
+                <Contacts />
+            </div>
         </div>
     )
 }
