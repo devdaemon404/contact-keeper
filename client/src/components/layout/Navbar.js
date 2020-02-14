@@ -20,6 +20,16 @@ const Navbar = ({ title, icon }) => {
                         <button className="btn btn-outline-light">About</button>
                     </Link>
                 </li>
+                <li style={{ marginLeft: "10px" }} className="nav-item">
+                    <Link to="/register">
+                        <button className="btn btn-outline-light">Register</button>
+                    </Link>
+                </li>
+                <li style={{ marginLeft: "10px" }} className="nav-item">
+                    <Link to="/login">
+                        <button className="btn btn-outline-light">Login</button>
+                    </Link>
+                </li>
             </ul>
         </nav>
     )
