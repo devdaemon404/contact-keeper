@@ -16,16 +16,16 @@ const Login = () => {
         console.log('Login Submit');
     }
     return (
-        <div className="jumbotron mt-5">
+        <div className="jumbotron mt-3">
             <form onSubmit={onSubmit}>
                 <h4 className="text-center">Account Login</h4>
                 <div className="form-group">
                     <label htmlFor="email">Email Address</label>
-                    <input className="form-control" type="email" name="email" value={email} onChange={onChange} />
+                    <input className="form-control" type="email" name="email" value={email} onChange={onChange} placeholder="Email" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input className="form-control" type="password" name="password" value={password} onChange={onChange} />
+                    <input className="form-control" type="password" name="password" value={password} onChange={onChange} placeholder="Password" />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
