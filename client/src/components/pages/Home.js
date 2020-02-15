@@ -7,7 +7,7 @@ const Home = () => {
     const authContext = useContext(AuthContext);
     useEffect(() => {
         authContext.loadUser();
-        //eslint-disable-line
+        //eslint-disable-next-line
     }, [])
     return (
         <div className="row mt-3 justify-content-center">
