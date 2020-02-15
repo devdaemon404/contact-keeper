@@ -15,7 +15,7 @@ const Navbar = ({ title, icon }) => {
     const authLinks = (
         <Fragment>
             <li style={{ marginLeft: "10px" }} className="nav-item">
-                <button className="btn btn-light" active>Hello {user && user.name}</button>
+                <button className="btn btn-light" disabled={true}>Hello {user && user.name}</button>
             </li>
             <li style={{ marginLeft: "10px" }} className="nav-item">
                 <button onClick={onLogout} className="btn btn-outline-light"><i className="fas fa-sign-out-alt mr-1"></i>Logout</button>
