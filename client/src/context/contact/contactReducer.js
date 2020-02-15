@@ -32,7 +32,7 @@ export default (state, action) => {
         case UPDATE_CONTACT:
             return {
                 ...state,
-                contacts: state.contacts.map(contact => contact.id === payload.id ?
+                contacts: state.contacts.map(contact => contact._id === payload._id ?
                     payload : contact),
                 loading: false
             }
