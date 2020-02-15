@@ -7,7 +7,7 @@ const Navbar = ({ title, icon }) => {
     const authContext = useContext(AuthContext);
     const contactContext = useContext(ContactContext);
 
-    const { isAuthenticated, logout, user } = authContext;
+    const { isAuthenticated, logout, loading, user } = authContext;
     const { clearContacts } = contactContext;
 
     const onLogout = () => {
@@ -51,7 +51,7 @@ const Navbar = ({ title, icon }) => {
                 {' ' + title}
             </Link>
             <ul className="nav">
-                {isAuthenticated ? authLinks : guestLinks}
+                {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
             </ul>
         </nav>
     )
