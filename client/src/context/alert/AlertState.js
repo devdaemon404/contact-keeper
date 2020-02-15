@@ -4,7 +4,6 @@ import alertReducer from './alertReducer';
 import uuid from 'uuid';
 import {
     SET_ALERT,
-    REGISTER_SUCCESS,
     REMOVE_ALERT
 } from '../types';
 
